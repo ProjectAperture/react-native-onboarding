@@ -1,0 +1,38 @@
+{
+  "name": "react-native-onboarding",
+  "version": "0.3.1",
+  "description": "Delightful Onboarding for your React-Native App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ProjectAperture/react-native-onboarding"
+  },
+  "keywords": [
+    "React",
+    "Native",
+    "React-Native",
+    "Component",
+    "Onboarding",
+    "Tutorial",
+    "Intro",
+    "Swiper",
+    "Welcome"
+  ],
+  "author": "Gosha Arinich, Johannes Filter, Wassim Gharbi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ProjectAperture/react-native-onboarding/issues"
+  },
+  "homepage": "https://github.com/ProjectAperture/react-native-onboarding#readme",
+  "dependencies": {
+    "tinycolor2": "^1.4.1"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*",
+    "prop-types": "*"
+  }
+}
