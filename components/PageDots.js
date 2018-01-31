@@ -26,7 +26,7 @@ const PageDot = ({ isLight, selected }) => (
 const PageDots = ({ isLight, pages, currentPage }) => (
   <View style={styles.container}>
     {pages.map((page, index) => (
-      page.isDone ?
+      page.isDone() ?
       <PageCheckmark key={index} selected={index === currentPage} isLight={isLight} /> :
       <PageDot key={index} selected={index === currentPage} isLight={isLight} />
     ))}

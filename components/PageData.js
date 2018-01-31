@@ -16,7 +16,7 @@ const PageContent = ({ children }) => (
   </View>
 );
 
-const PageData = ({ isLight, isDone, backgroundColor, image, title, subtitle, action, next, ...rest }) => (
+const PageData = ({ isLight, isDone, disableWhenDone, backgroundColor, image, title, subtitle, action, next, ...rest }) => (
   <Page {...rest}>
     <PageContent>
       <View style={styles.image}>
@@ -33,11 +33,21 @@ const PageData = ({ isLight, isDone, backgroundColor, image, title, subtitle, ac
           activeOpacity={0.9}
           style={[
             styles.btn,
-            { backgroundColor: isDone || action.disabled ? (isLight ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.7)') : (isLight ? 'black' : 'white') }
+            { backgroundColor: (disableWhenDone && isDone()) || action.disabled ? (isLight ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.7)') : (isLight ? 'black' : 'white') }
           ]}
           resizeMode={'contain'}
-          onPress={() => { action.tap().then(next) }}
-          disabled={isDone || action.disabled}
+          onPress={() => {
+              if ((disableWhenDone && isDone()) || action.disabled) {
+                next()
+              } else {
+                action.tap().then(() => {
+                  if (isDone()) {
+                    next()
+                  }
+                })
+              }
+            }
+          }
         >
           {action.disabled &&
             <ActivityIndicator
@@ -47,8 +57,8 @@ const PageData = ({ isLight, isDone, backgroundColor, image, title, subtitle, ac
             />
           }
           <Text style={[styles.btntxt, {color: backgroundColor}]}>
-            {isDone && <MaterialIcon name='check' size={16} />}
-            {isDone ? ` ${action.labelDone}` : action.label}
+            {isDone() && disableWhenDone && <MaterialIcon name='check' size={16} />}
+            {(disableWhenDone && isDone()) ? ` ${action.labelDone}` : action.label}
           </Text>
         </TouchableOpacity>
       }
