@@ -16,7 +16,10 @@ const PageContent = ({ children }) => (
   </View>
 );
 
-const PageData = ({ isLight, isDone, disableWhenDone, backgroundColor, image, title, subtitle, action, next, ...rest }) => (
+const PageData = ({
+  isLight, isDone, disableWhenDone, backgroundColor, image,
+  title, subtitle, action, next, end, currentPage, pages, ...rest
+}) => (
   <Page {...rest}>
     <PageContent>
       <View style={styles.image}>
@@ -37,12 +40,19 @@ const PageData = ({ isLight, isDone, disableWhenDone, backgroundColor, image, ti
           ]}
           resizeMode={'contain'}
           onPress={() => {
+              const performNext = () => {
+                if (currentPage + 1 === pages.length) {
+                  end()
+                } else {
+                  next()
+                }
+              }
               if ((disableWhenDone && isDone()) || action.disabled) {
-                next()
+                performNext()
               } else {
                 action.tap().then(() => {
                   if (isDone()) {
-                    next()
+                    performNext()
                   }
                 })
               }
