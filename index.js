@@ -64,7 +64,7 @@ export default class Onboarding extends Component {
           onScroll={this.updatePosition}
           scrollEventThrottle={100}
         >
-          {pages.map(({ image, title, disableWhenDone, subtitle, action, isDone, backgroundColor }, idx) => (
+          {pages.map(({ image, title, disableWhenDone, subtitle, notice, action, isDone, backgroundColor }, idx) => (
             <PageData
               key={idx}
               isLight={isLight}
@@ -81,6 +81,7 @@ export default class Onboarding extends Component {
               end={this.props.onEnd}
               currentPage={this.state.currentPage}
               pages={pages}
+              notice={notice}
             />
           ))}
         </ScrollView>
