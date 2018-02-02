@@ -78,6 +78,9 @@ export default class Onboarding extends Component {
               backgroundColor={backgroundColor}
               disableWhenDone={!(disableWhenDone === false)}
               next={this.goNext}
+              end={this.props.onEnd}
+              currentPage={this.state.currentPage}
+              pages={pages}
             />
           ))}
         </ScrollView>
