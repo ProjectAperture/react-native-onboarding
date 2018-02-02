@@ -18,7 +18,7 @@ const PageContent = ({ children }) => (
 
 const PageData = ({
   isLight, isDone, disableWhenDone, backgroundColor, image,
-  title, subtitle, action, next, end, currentPage, pages, ...rest
+  title, subtitle, notice, action, next, end, currentPage, pages, ...rest
 }) => (
   <Page {...rest}>
     <PageContent>
@@ -72,6 +72,12 @@ const PageData = ({
           </Text>
         </TouchableOpacity>
       }
+      {
+        notice &&
+        <Text style={{ ...styles.subtitle, ...(isLight ? styles.subtitleLight : {}) }}>
+          {notice}
+        </Text>
+      }
     </PageContent>
   </Page>
 );
@@ -92,8 +98,7 @@ const styles = {
     fontFamily: (Platform.OS === 'ios') ? 'Nunito-Bold' : 'Nunito Bold',
     textAlign: 'center',
     fontSize: 26,
-    color: '#fff',
-    paddingBottom: 15,
+    color: '#fff'
   },
   titleLight: {
     color: '#000',
@@ -102,8 +107,8 @@ const styles = {
     fontFamily: (Platform.OS === 'ios') ? 'Nunito-Regular' : 'Nunito Regular',
     textAlign: 'center',
     fontSize: 16,
-    paddingRight: 20,
-    paddingLeft: 20,
+    padding: 20,
+    marginBottom: 10,
     color: 'rgba(255, 255, 255, 0.7)',
   },
   subtitleLight: {
@@ -115,7 +120,10 @@ const styles = {
     alignItems: 'center',
     alignSelf: 'stretch',
     justifyContent: 'center',
-    margin: 40,
+    marginLeft: 40,
+    marginRight: 40,
+    marginTop: 0,
+    marginBottom: 0,
     borderRadius: 40
   },
   btntxt: {
