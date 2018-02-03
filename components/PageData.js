@@ -73,10 +73,7 @@ const PageData = ({
         </TouchableOpacity>
       }
       {
-        notice &&
-        <Text style={{ ...styles.subtitle, ...(isLight ? styles.subtitleLight : {}) }}>
-          {notice}
-        </Text>
+        notice && notice(isLight)
       }
     </PageContent>
   </Page>
