@@ -54,7 +54,6 @@ export default class Onboarding extends Component {
     const { backgroundColor } = currentPage;
     const isLight = tinycolor(backgroundColor).getBrightness() > 180;
 
-    console.log(this.props.font)
     return (
       <View style={{ flex: 1, backgroundColor: backgroundColor, justifyContent: 'center' }}>
         <ScrollView
