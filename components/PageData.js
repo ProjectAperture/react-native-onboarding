@@ -18,17 +18,17 @@ const PageContent = ({ children }) => (
 
 const PageData = ({
   isLight, isDone, disableWhenDone, backgroundColor, image,
-  title, subtitle, notice, action, next, end, currentPage, pages, ...rest
+  title, subtitle, notice, action, next, end, currentPage, pages, font, ...rest
 }) => (
   <Page {...rest}>
     <PageContent>
       <View style={styles.image}>
         {image}
       </View>
-      <Text style={{ ...styles.title, ...(isLight ? styles.titleLight : {}) }}>
+      <Text style={{ ...styles.title, ...(isLight ? styles.titleLight : {}), ...(font ? font : {}) }}>
         {title}
       </Text>
-      <Text style={{ ...styles.subtitle, ...(isLight ? styles.subtitleLight : {}) }}>
+      <Text style={{ ...styles.subtitle, ...(isLight ? styles.subtitleLight : {}), ...(font ? font : {}) }}>
         {subtitle}
       </Text>
       {action &&
@@ -66,7 +66,7 @@ const PageData = ({
               color={backgroundColor}
             />
           }
-          <Text style={[styles.btntxt, {color: backgroundColor}]}>
+          <Text style={[styles.btntxt, {color: backgroundColor}, font ? font : {}]}>
             {isDone() && disableWhenDone && <MaterialIcon name='check' size={16} />}
             {(disableWhenDone && isDone()) ? ` ${action.labelDone}` : action.label}
           </Text>
