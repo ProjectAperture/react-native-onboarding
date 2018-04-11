@@ -18,17 +18,17 @@ const PageContent = ({ children }) => (
 
 const PageData = ({
   isLight, isDone, disableWhenDone, backgroundColor, image,
-  title, subtitle, notice, action, next, end, currentPage, pages, font, ...rest
+  title, subtitle, notice, action, next, end, currentPage, pages, font = {regular: {}, bold:{}}, ...rest
 }) => (
   <Page {...rest}>
     <PageContent>
       <View style={styles.image}>
         {image}
       </View>
-      <Text style={{ ...styles.title, ...(isLight ? styles.titleLight : {}), ...(font ? font : {}) }}>
+      <Text style={{ ...styles.title, ...(isLight ? styles.titleLight : {}), ...font.bold }}>
         {title}
       </Text>
-      <Text style={{ ...styles.subtitle, ...(isLight ? styles.subtitleLight : {}), ...(font ? font : {}) }}>
+      <Text style={{ ...styles.subtitle, ...(isLight ? styles.subtitleLight : {}), ...font.regular }}>
         {subtitle}
       </Text>
       {action &&
@@ -66,7 +66,7 @@ const PageData = ({
               color={backgroundColor}
             />
           }
-          <Text style={[styles.btntxt, {color: backgroundColor}, font ? font : {}]}>
+          <Text style={[styles.btntxt, {color: backgroundColor}, font.bold]}>
             {isDone() && disableWhenDone && <MaterialIcon name='check' size={16} />}
             {(disableWhenDone && isDone()) ? ` ${action.labelDone}` : action.label}
           </Text>
@@ -92,7 +92,6 @@ const styles = {
     alignItems: 'center',
   },
   title: {
-    fontFamily: (Platform.OS === 'ios') ? 'Nunito-Bold' : 'Nunito Bold',
     textAlign: 'center',
     fontSize: 26,
     color: '#fff'
@@ -101,7 +100,6 @@ const styles = {
     color: '#000',
   },
   subtitle: {
-    fontFamily: (Platform.OS === 'ios') ? 'Nunito-Regular' : 'Nunito Regular',
     textAlign: 'center',
     fontSize: 16,
     padding: 20,
@@ -124,7 +122,6 @@ const styles = {
     borderRadius: 40
   },
   btntxt: {
-    fontFamily: (Platform.OS === 'ios') ? 'Nunito-Bold' : 'Nunito Bold',
     fontSize: 14,
     alignSelf: 'center',
     padding: 5
