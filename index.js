@@ -82,6 +82,7 @@ export default class Onboarding extends Component {
               currentPage={this.state.currentPage}
               pages={pages}
               notice={notice}
+              font={this.props.font}
             />
           ))}
         </ScrollView>
@@ -95,6 +96,7 @@ export default class Onboarding extends Component {
           currentPage={this.state.currentPage}
           onEnd={this.props.onEnd}
           onNext={this.goNext}
+          font={this.props.font}
         />
       </View>
     );
@@ -112,6 +114,7 @@ Onboarding.propTypes = {
   showSkip: PropTypes.bool,
   showNext: PropTypes.bool,
   showDone: PropTypes.bool,
+  font: PropTypes.object
 };
 
 Onboarding.defaultProps = {
